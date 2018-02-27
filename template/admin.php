@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,26 +9,10 @@
     <link rel="stylesheet" href="//localhost/css/admin.css">
 
     <title>Admin</title>
-    <?php
-        if( array_key_exists('head', $aParams) ) {
-            foreach( $aParams['head'] as $aEntry ) {
-                echo $aEntry . "\n";
-            }
-        }
-    ?>
 </head>
 <body>
     <div id="content-wrapper" class="">
-    <?php
-        echo render($aParams['content']);
-        
-        
-        if( array_key_exists('bottom', $aParams) ) {
-            foreach( $aParams['bottom'] as $aEntry ) {
-                echo $aEntry . "\n";
-            }
-        }
-    ?>
+        {content}
     </div>
     <footer>
     </footer>

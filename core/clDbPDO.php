@@ -29,7 +29,6 @@ class clDbPDO {
 
 	public function query($query){
 		$this->stmt = $this->oConn->prepare($query);
-		// dump( $this->stmt );
 	}
 
 	public function bind($param, $value, $type = null){

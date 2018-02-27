@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2018 at 07:14 PM
+-- Generation Time: Feb 27, 2018 at 05:49 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -19,6 +19,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `tranquil_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entconfig`
+--
+
+CREATE TABLE `entconfig` (
+  `configId` int(11) NOT NULL,
+  `configKey` varchar(255) NOT NULL,
+  `configValue` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `entconfig`
+--
+
+INSERT INTO `entconfig` (`configId`, `configKey`, `configValue`) VALUES
+(1, 'SITE_TITLE', 'Tranquil');
 
 -- --------------------------------------------------------
 
@@ -42,11 +61,18 @@ CREATE TABLE `entusers` (
 --
 
 INSERT INTO `entusers` (`userId`, `userName`, `userPass`, `userStatus`, `userEmail`, `userLastLogin`, `userCreated`, `userUpdated`) VALUES
-(1, 'developer', 'cb7c066db57d4a076cec29404dfc6c00', 'admin', '', '2018-02-24 19:06:46', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'developer', 'cb7c066db57d4a076cec29404dfc6c00', 'admin', '', '2018-02-27 17:43:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `entconfig`
+--
+ALTER TABLE `entconfig`
+  ADD PRIMARY KEY (`configId`,`configKey`) USING BTREE,
+  ADD UNIQUE KEY `configKey` (`configKey`);
 
 --
 -- Indexes for table `entusers`
@@ -63,6 +89,11 @@ ALTER TABLE `entusers`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `entconfig`
+--
+ALTER TABLE `entconfig`
+  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `entusers`
 --

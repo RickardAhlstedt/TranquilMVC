@@ -77,6 +77,8 @@ input[type=password] {
   line-height: inherit;
   background-image: none;
   transition: all .2s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  padding: 0em 0.5em;
 }
 
 input[type=text]:focus,
@@ -212,7 +214,7 @@ button.raised.large:hover {
 
 #backgroundImage {
   display: block;
-  background-image: url(../images/views/admin/login.jpg);
+  background-image: url(../images/views/admin/login_00.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

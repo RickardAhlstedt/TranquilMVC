@@ -16,4 +16,8 @@ define( 'PATH_CONFIG', 'config/' );
 define( 'PATH_FUNCTIONS', 'functions/' );
 define( 'PATH_MODELS', 'models/' );
 
+define( 'PATH_LOG', 'logs/' );
+
+define( 'PATH_UPLOAD_IMAGE', 'images/upload/' );
+
 $GLOBALS['debug'] = true;

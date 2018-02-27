@@ -8,7 +8,15 @@ var editor = grapesjs.init( {
     ],
     pluginsOpts: {
         'gjs-preset-webpage' : {}
+    },
+    assetManager: {
+        upload: '/admin/uploadImage',
+        uploadName: 'files'
     }
+} );
+
+editor.on( 'asset:upload:error', (err) => {
+    console.log(err);
 } );
 
 console.log("test");

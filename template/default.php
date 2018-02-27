@@ -8,27 +8,10 @@
     <link rel="stylesheet" href="css/main.min.css">
     <title></title>
 
-    <?php
-        if( array_key_exists('head', $aParams) ) {
-            foreach( $aParams['head'] as $aEntry ) {
-                echo $aEntry . "\n";
-            }
-        }
-    ?>
-
 </head>
 <body>
 
-<?php
-    echo render($aParams['content']);
-    
-    
-    if( array_key_exists('bottom', $aParams) ) {
-        foreach( $aParams['bottom'] as $aEntry ) {
-            echo $aEntry . "\n";
-        }
-    }
-?>
+{content}
 
 </body>
 </html>
