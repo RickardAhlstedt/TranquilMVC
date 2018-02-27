@@ -27,8 +27,6 @@ What can I say, basic PDO. For an example, take a look at /models/admin/login.ph
 
 ## TODO ##
 - Implement a page-builder, or something to create new pages that are visible to the end-user, thinking of GrapesJs.
-- Write clTemplate.php to have more functions and be able to modify the template before rendering.
-- Write clView.php, modify and render view.
 - Form-editor.
 - Caching.
 - SASS-compilation.
