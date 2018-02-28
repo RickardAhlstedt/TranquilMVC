@@ -243,7 +243,7 @@ button.raised {
 }
 
 #formLogin {
-	width: 200px;
+	width: 400px;
 	background-color: rgba(255,255,255, 0.75);
 	&.center {
 		position: absolute;
@@ -257,6 +257,9 @@ button.raised {
 	}
 	.inline {
 		display: inline;
+	}
+	img.logo {
+		width: 100%;
 	}
 }
 
@@ -296,4 +299,85 @@ h4, h5, h6 {
     background-color: #FFF;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+#content-wrapper {
+	background-color: #F2F2F2;
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 50px;
+		width: 100vw;
+		max-width: 100%;
+		background-color: #393E46;
+		border-bottom: 1px solid #F96D00;
+		z-index: 100;
+		color: #fff;
+		a {
+			color: inherit;
+			&.logout {
+				text-decoration: none;
+				font-family: 'Lato', sans-serif;
+				font-size: 1.2em;
+			}
+		}
+		.left {
+			height: 100%;
+			width: auto;
+			display: block;
+			float: left;
+			.logo {
+				background: url( 'images/views/admin/logo.png' );
+				width: 15%;
+				padding-top: 0.3em;
+				padding-left: 0.3em;
+				filter: invert(100%);
+			}
+		}
+		.middle {
+
+		}
+		.right {
+			height: 100%;
+			width: auto;
+			display: block;
+			float: right;
+		}
+	}
+	
+	aside {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 80px;
+		height: 100vh;
+		background-color: #5C636E;
+		padding: 4em 0.5em;
+		color: #fff;
+		ul.mainNav {
+			li {
+				padding: 0.5em 0;
+				a {
+					text-align: center;
+					font-size: 2em;
+					display: block;
+					color: inherit;
+					text-decoration: none;
+					span {
+						font-size: 0.5em;
+						font-weight: 400;
+						font-family: 'Lato', sans-serif;
+					}
+				}
+			}
+		}
+	}
+	#content {
+		position: absolute;
+		top: 3em;
+		right: 0;
+		padding: 1em;
+		width: calc(100vw - 132px);
+	}
 }

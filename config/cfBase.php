@@ -10,7 +10,7 @@ define( 'USER_TIMEOUT', 3600 );
 define( 'SITE_SESSION_TIMEOUT', USER_TIMEOUT );
 
 define( 'PATH_TEMPLATE', 'template/' );
-define( 'PATH_VIEWS', 'views/' );
+define( 'PATH_VIEWS', 'views' );
 define( 'PATH_CORE', 'core/' );
 define( 'PATH_CONFIG', 'config/' );
 define( 'PATH_FUNCTIONS', 'functions/' );

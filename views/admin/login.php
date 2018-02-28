@@ -31,6 +31,7 @@ if( !empty($_POST) ) {
 ?>
 <div id="backgroundImage"></div>
 <form action="/admin/login" method="post" id="formLogin" class="center panel">
+	<img src="../images/views/admin/logo.png" class="logo">
 	<h1>Login</h1>
 	&nbsp;
 	<?php 

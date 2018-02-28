@@ -1,13 +1,16 @@
 <?php
-$oRouter = new clRouter();
-$oConfig = new clConfig();
 
-dump( $_SESSION );
-dump( $_GET );
+$oRouter = clRegistry::get( 'clRouter' );
+$oConfig = clRegistry::get( 'clConfig' );
+$oTemplate = clRegistry::get( 'clTemplate' );
 
+$oTemplate->setTitle('test');
 
 if( empty($_SESSION['userId']) ) {
-    $oRouter->redirect( '/admin/login' );
+	$oRouter->redirect( '/admin/login' );
 }
-
 ?>
+<div id="content">
+	
+</div>
+
