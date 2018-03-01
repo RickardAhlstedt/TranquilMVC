@@ -26,52 +26,18 @@ $oRouter = new clRouter();
 clRegistry::add( $oConfig );
 clRegistry::add( $oRouter );
 
-$sViewPath = 'views/';
-$sRoutePath = $oRouter->getRoutePath();
-
-// $sTemplate = 'default.php';
 $oTemplate = new clTemplate();
 clRegistry::add( $oTemplate );
-
-$oView = new clView( $sViewPath . 'home/index.php' );
+$oView = new clView();
 clRegistry::add( $oView );
 
-$sViewToRender = '';
-
-if( $sRoutePath == '/' ) {
-	$sViewToRender = $sViewPath . 'home/index.php';
-	$oView->setView( $sViewToRender );
-} elseif( $sRoutePath == '/admin/uploadImage') {
-	$oTemplate->setTemplate( 'empty.php' );
-	$sViewToRender = $sViewPath . 'admin/uploadImage.php';
-	$oView->setView( $sViewToRender );
-} elseif( $sRoutePath == '/admin/login' ) {
-	$oTemplate->setTemplate( 'adminLogin.php' );
-	$sViewToRender = $sViewPath . 'admin/login.php';
-	$oView->setView( $sViewToRender );
-} elseif( strpos( $sRoutePath, '/admin') !== false ) {
-	$oTemplate->setTemplate( 'admin.php' );
-	$aRoutePath = explode( '/', $sRoutePath );
-	if( count($aRoutePath) > 3 ) {
-		$sViewToRender = $sViewPath . $aRoutePath[1] . '/' . $aRoutePath[2] . '/' . $aRoutePath[3] . '.php';
-		$oView->setView( $sViewToRender );
-	} elseif(count($aRoutePath) > 2 ) {
-		$sViewToRender = $sViewPath . $aRoutePath[1] . '/' . $aRoutePath[2] . '.php';
-		$oView->setView( $sViewToRender );
-	} else {
-		$sViewToRender = $sViewPath . $aRoutePath[1] . '/' . $aRoutePath[1] . '.php';
-		$oView->setView( $sViewToRender );
-	}
-
+$aRouteData = $oRouter->read( $oRouter->getRoutePath() );
+if( $aRouteData != false ) {
+	$oTemplate->setTemplate( $aRouteData['routeTemplate'] . '.php' );
+	$oView->setView( PATH_VIEWS . '/' . $aRouteData['routeModel'] . '/' . $aRouteData['routeView'] . '.php' );
 } else {
-	$aRoutePath = explode( '/', $sRoutePath );
-	if( count($aRoutePath) > 2 ) {
-		$sViewToRender = $sViewPath . $aRoutePath[1] . '/' . $aRoutePath[2] . '.php';
-		$oView->setView( $sViewToRender );
-	} else {
-		$sViewToRender = $sViewPath . $aRoutePath[1] . '/' . $aRoutePath[1] . '.php';
-		$oView->setView( $sViewToRender );
-	}
+	$oTemplate->setTemplate( 'default.php' );
+	$oView->setView( PATH_VIEWS . '/infoContent/404.php' );
 }
 
 //Render the output

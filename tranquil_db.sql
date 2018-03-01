@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2018 at 05:49 PM
+-- Generation Time: Mar 01, 2018 at 10:10 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -42,6 +42,58 @@ INSERT INTO `entconfig` (`configId`, `configKey`, `configValue`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `entinfocontent`
+--
+
+CREATE TABLE `entinfocontent` (
+  `contentId` int(11) NOT NULL,
+  `contentTitle` varchar(255) NOT NULL,
+  `contentText` text NOT NULL,
+  `contentMetaKeywords` text NOT NULL,
+  `contentMetaDescription` text NOT NULL,
+  `contentMetaCanonicalUrl` varchar(255) NOT NULL,
+  `contentCreated` datetime NOT NULL,
+  `contentUpdated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `entinfocontent`
+--
+
+INSERT INTO `entinfocontent` (`contentId`, `contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentCreated`, `contentUpdated`) VALUES
+(1, 'Tranquil', 'Basic MVC and CMS', 'meta, key, words', 'metadescription', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entroutes`
+--
+
+CREATE TABLE `entroutes` (
+  `routeId` int(11) NOT NULL,
+  `routePath` varchar(255) NOT NULL,
+  `routeTemplate` varchar(255) NOT NULL,
+  `routeModel` varchar(255) NOT NULL,
+  `routeView` varchar(255) NOT NULL,
+  `routeViewId` int(11) NOT NULL,
+  `routeCreated` datetime NOT NULL,
+  `routeUpdated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `entroutes`
+--
+
+INSERT INTO `entroutes` (`routeId`, `routePath`, `routeTemplate`, `routeModel`, `routeView`, `routeViewId`, `routeCreated`, `routeUpdated`) VALUES
+(1, '/', 'default', 'infoContent', 'show', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, '/admin', 'admin', 'admin', 'admin', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '/admin/login', 'admin', 'admin', 'login', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, '/admin/logout', 'admin', 'admin', 'logout', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, '/admin/infoContent', 'admin', 'infoContent', 'list', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `entusers`
 --
 
@@ -61,7 +113,7 @@ CREATE TABLE `entusers` (
 --
 
 INSERT INTO `entusers` (`userId`, `userName`, `userPass`, `userStatus`, `userEmail`, `userLastLogin`, `userCreated`, `userUpdated`) VALUES
-(1, 'developer', 'cb7c066db57d4a076cec29404dfc6c00', 'admin', '', '2018-02-27 17:43:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'developer', 'cb7c066db57d4a076cec29404dfc6c00', 'admin', '', '2018-03-01 21:27:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -73,6 +125,19 @@ INSERT INTO `entusers` (`userId`, `userName`, `userPass`, `userStatus`, `userEma
 ALTER TABLE `entconfig`
   ADD PRIMARY KEY (`configId`,`configKey`) USING BTREE,
   ADD UNIQUE KEY `configKey` (`configKey`);
+
+--
+-- Indexes for table `entinfocontent`
+--
+ALTER TABLE `entinfocontent`
+  ADD PRIMARY KEY (`contentId`);
+
+--
+-- Indexes for table `entroutes`
+--
+ALTER TABLE `entroutes`
+  ADD PRIMARY KEY (`routeId`,`routePath`),
+  ADD UNIQUE KEY `routePath` (`routePath`);
 
 --
 -- Indexes for table `entusers`
@@ -94,6 +159,16 @@ ALTER TABLE `entusers`
 --
 ALTER TABLE `entconfig`
   MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `entinfocontent`
+--
+ALTER TABLE `entinfocontent`
+  MODIFY `contentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `entroutes`
+--
+ALTER TABLE `entroutes`
+  MODIFY `routeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `entusers`
 --
