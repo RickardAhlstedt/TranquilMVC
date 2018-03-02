@@ -1,3 +1,9 @@
+<?php
+if( empty($_SESSION['userId']) ) {
+	$oRouter = clRegistry::get( 'clRouter' );
+	$oRouter->redirect( '/admin/login' );
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +12,10 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="//localhost/css/admin.css">
 
@@ -26,11 +36,14 @@
 		<aside>
 			<ul class="mainNav">
 				<li><a href="/admin"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+				<li><a href="/admin/infoContent"><i class="far fa-file-alt"></i><span>Pages</span></a></li>
 				<li><a href="/admin/modules/listModules"><i class="fas fa-archive"></i><span>Modules</span></a></li>
 				<li><a href="/admin/settings"><i class="fas fa-cogs"></i><span>Settings</span></a></li>
 			</ul>
 		</aside>
+		<div id="content">
 			{content}
+		</div>
 	</div>
 	{bottom}
 </body>

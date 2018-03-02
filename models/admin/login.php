@@ -11,14 +11,14 @@ class login {
 	}
 	
 	public function saltPassword( $sUsername, $sUserpass ) {
+		$sUsername = $this->oDb->escapeStr( $sUsername );
+		$sUserpass = $this->oDb->escapeStr( $sUserpass );
 		return md5( $sUsername . $sUserpass . USER_PASS_SALT );
 	}
 
 	public function login( $sUsername, $sUserpass ) {
-		$sUsername = $this->oDb->escapeStr( $sUsername );
-		$sUserpass = $this->oDb->escapeStr( $sUserpass );
-		$sUserpass = md5( $sUsername . $sUserpass . USER_PASS_SALT );
-		$this->oDb->query("SELECT * FROM `entUsers` WHERE `userName`=$sUsername AND `userPass`='$sUserpass'");
+		$sUserpass = $this->saltPassword( $sUsername, $sUserpass );
+		$this->oDb->query("SELECT * FROM `entUsers` WHERE `userName`='$sUsername' AND `userPass`='$sUserpass'");
 		$aRow = $this->oDb->single();
 		if( !empty($aRow) ) {
 			// User found

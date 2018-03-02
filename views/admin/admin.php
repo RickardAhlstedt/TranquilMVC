@@ -10,7 +10,5 @@ if( empty($_SESSION['userId']) ) {
 	$oRouter->redirect( '/admin/login' );
 }
 ?>
-<div id="content">
-	
-</div>
+
 

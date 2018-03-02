@@ -6,6 +6,12 @@ This is a small MVC, written for small sites in mind.
 - PDO-connection to the database
 - Templates
 
+## Logging in ##
+```
+username: developer
+password: tranquil
+```
+
 ## Routing ##
 The router splits the PATH_INFO by each /, and instantiates the requested view based on the route.
 Example:
@@ -26,7 +32,6 @@ Then from the view-file, we can choose to instantiate the respective model, or n
 What can I say, basic PDO. For an example, take a look at /models/admin/login.php
 
 ## TODO ##
-- Implement a page-builder, or something to create new pages that are visible to the end-user, thinking of GrapesJs.
 - Form-editor.
 - Caching.
 - SASS-compilation.

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2018 at 10:10 PM
+-- Generation Time: Mar 02, 2018 at 02:16 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -61,7 +61,7 @@ CREATE TABLE `entinfocontent` (
 --
 
 INSERT INTO `entinfocontent` (`contentId`, `contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentCreated`, `contentUpdated`) VALUES
-(1, 'Tranquil', 'Basic MVC and CMS', 'meta, key, words', 'metadescription', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'Tranquil', '<p>Basic MVC and CMS</p>\r\n\r\n<div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">test</div>\r\n\r\n<p>&nbsp;</p>\r\n', 'meta, key, words', 'metadescription', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -87,9 +87,10 @@ CREATE TABLE `entroutes` (
 INSERT INTO `entroutes` (`routeId`, `routePath`, `routeTemplate`, `routeModel`, `routeView`, `routeViewId`, `routeCreated`, `routeUpdated`) VALUES
 (1, '/', 'default', 'infoContent', 'show', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, '/admin', 'admin', 'admin', 'admin', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, '/admin/login', 'admin', 'admin', 'login', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '/admin/login', 'adminLogin', 'admin', 'login', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, '/admin/logout', 'admin', 'admin', 'logout', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, '/admin/infoContent', 'admin', 'infoContent', 'list', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(5, '/admin/infoContent', 'admin', 'infoContent', 'list', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, '/admin/infoContent/add', 'admin', 'infoContent', 'formAdd', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,7 @@ CREATE TABLE `entusers` (
 --
 
 INSERT INTO `entusers` (`userId`, `userName`, `userPass`, `userStatus`, `userEmail`, `userLastLogin`, `userCreated`, `userUpdated`) VALUES
-(1, 'developer', 'cb7c066db57d4a076cec29404dfc6c00', 'admin', '', '2018-03-01 21:27:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'developer', '7e7aad44abe3c029bd3a7543520605e1', 'admin', '', '2018-03-02 14:16:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -163,12 +164,12 @@ ALTER TABLE `entconfig`
 -- AUTO_INCREMENT for table `entinfocontent`
 --
 ALTER TABLE `entinfocontent`
-  MODIFY `contentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `contentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `entroutes`
 --
 ALTER TABLE `entroutes`
-  MODIFY `routeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `routeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `entusers`
 --

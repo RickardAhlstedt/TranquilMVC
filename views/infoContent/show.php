@@ -15,6 +15,6 @@ if( !empty($aData) ) {
 	$oTemplate->setKeywords( $aContentData['contentMetaKeywords'] );
 	$oTemplate->setDescription( $aContentData['contentMetaDescription'] );
 	$oTemplate->setCanonicalUrl( $aContentData['contentMetaCanonicalUrl'] );
-
+	
 	echo $aContentData['contentText'];
 }

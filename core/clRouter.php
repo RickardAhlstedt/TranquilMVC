@@ -6,6 +6,8 @@ class clRouter {
 
 	private $oDb;
 
+	public $sPath;
+
 	public function __construct() {
 		$this->oDb = new clDbPDO();
 	}
@@ -43,13 +45,43 @@ class clRouter {
 		}
 	}
 
+	public function readByViewId( $iViewId ) {
+		$this->oDb->query( "SELECT * FROM `entRoutes` WHERE `routeViewId`=$iViewId" );
+		return $this->oDb->single();
+	}
+
 	public function getIdByRoute( $sRoute ) {
 		$this->oDb->query( "SELECT `routeViewId` FROM `entRoutes` WHERE `routePath` LIKE '%$sRoute%'" );
 		return $this->oDb->single();
 	}
 
 	public function createRoute( $aData = array() ) {
-		
+		$sRoutePath = $aData['routePath'];
+		$sRouteTemplate = $aData['routeTemplate'];
+		$sRouteModel = $aData['routeModel'];
+		$sRouteView = $aData['routeView'];
+		$sRouteViewId = $aData['routeViewId'];
+		$sRouteCreated = strtotime( "Y-m-d H:i:s" );
+		$this->oDb->query( "INSERT INTO `entroutes`(`routePath`, `routeTemplate`, `routeModel`, `routeView`, `routeViewId`, `routeCreated`) VALUES (
+			'$sRoutePath',
+			'$sRouteTemplate',
+			'$sRouteModel',
+			'$sRouteView',
+			$sRouteViewId,
+			'$sRouteCreated'
+		)" );
+		$this->oDb->execute();
+		return $this->oDb->lastInsertId();
+	}
+
+	public function deleteByViewId( $iViewId ) {
+		$this->oDb->query( "DELETE FROM `entroutes` WHERE `routeViewId`=$iViewId" );
+		return $this->oDb->execute();
+	}
+
+	public function deleteByRouteId( $iRouteId ) {
+		$this->oDb->query( "DELETE FROM `entroutes` WHERE `routeId`=$iViewId" );
+		return $this->oDb->execute();
 	}
 
 	public function redirect( $sPath ) {
