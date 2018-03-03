@@ -18,6 +18,7 @@ $aContent = $oInfoContent->readAll( array('*') );
 
 $oTableOutput->setHeaders( array(
 	'Title',
+	'Status',
 	'Created',
 	'Updated',
 	'Controls'
@@ -32,6 +33,7 @@ if( !empty($_GET['delete']) && ctype_digit($_GET['delete']) ) {
 foreach( $aContent as $aEntry ) {
 	$oTableOutput->addRow( array(
 		'<a href="/admin/infoContent/add?contentId=' . $aEntry['contentId'] . '">' . $aEntry['contentTitle'] . '</a>',
+		ucfirst( $aEntry['contentStatus'] ),
 		substr($aEntry['contentCreated'], 0, 16),
 		substr($aEntry['contentUpdated'], 0, 16),
 		'<a href="/admin/infoContent/add?contentId=' . $aEntry['contentId'] . '"><i class="fas fa-edit"></i>Edit</a>

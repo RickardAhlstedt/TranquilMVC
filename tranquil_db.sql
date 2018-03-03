@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2018 at 02:16 PM
+-- Generation Time: Mar 03, 2018 at 01:36 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -52,6 +52,7 @@ CREATE TABLE `entinfocontent` (
   `contentMetaKeywords` text NOT NULL,
   `contentMetaDescription` text NOT NULL,
   `contentMetaCanonicalUrl` varchar(255) NOT NULL,
+  `contentStatus` enum('active','preview','inactive') NOT NULL,
   `contentCreated` datetime NOT NULL,
   `contentUpdated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -60,8 +61,31 @@ CREATE TABLE `entinfocontent` (
 -- Dumping data for table `entinfocontent`
 --
 
-INSERT INTO `entinfocontent` (`contentId`, `contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentCreated`, `contentUpdated`) VALUES
-(1, 'Tranquil', '<p>Basic MVC and CMS</p>\r\n\r\n<div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">test</div>\r\n\r\n<p>&nbsp;</p>\r\n', 'meta, key, words', 'metadescription', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `entinfocontent` (`contentId`, `contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentStatus`, `contentCreated`, `contentUpdated`) VALUES
+(1, 'Tranquil', '<p>Basic MVC and CMS</p>\r\n\r\n<div style="background:#eeeeee; border:1px solid #cccccc; padding:5px 10px">test</div>\r\n\r\n<p>tesatstaws</p>\r\n', 'meta, key, words', 'metadescription', '', 'active', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entnavigation`
+--
+
+CREATE TABLE `entnavigation` (
+  `navigationId` int(11) NOT NULL,
+  `navigationGroup` varchar(255) NOT NULL,
+  `navigationParentId` int(11) NOT NULL,
+  `navigationName` varchar(255) NOT NULL,
+  `navigationHref` varchar(255) NOT NULL,
+  `navigationBehavior` enum('_self','_blank','_parent','_top') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `entnavigation`
+--
+
+INSERT INTO `entnavigation` (`navigationId`, `navigationGroup`, `navigationParentId`, `navigationName`, `navigationHref`, `navigationBehavior`) VALUES
+(1, 'guest', 0, 'Home', '/', '_self'),
+(2, 'guest', 1, 'Sub', '/', '_self');
 
 -- --------------------------------------------------------
 
@@ -134,6 +158,12 @@ ALTER TABLE `entinfocontent`
   ADD PRIMARY KEY (`contentId`);
 
 --
+-- Indexes for table `entnavigation`
+--
+ALTER TABLE `entnavigation`
+  ADD PRIMARY KEY (`navigationId`);
+
+--
 -- Indexes for table `entroutes`
 --
 ALTER TABLE `entroutes`
@@ -164,12 +194,17 @@ ALTER TABLE `entconfig`
 -- AUTO_INCREMENT for table `entinfocontent`
 --
 ALTER TABLE `entinfocontent`
-  MODIFY `contentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `contentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `entnavigation`
+--
+ALTER TABLE `entnavigation`
+  MODIFY `navigationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `entroutes`
 --
 ALTER TABLE `entroutes`
-  MODIFY `routeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `routeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `entusers`
 --

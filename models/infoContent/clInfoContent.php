@@ -16,13 +16,15 @@ class clInfoContent {
 		$sContentMetaKeywords = $aData['contentMetaKeywords'];
 		$sContentMetaDescription = $aData['contentMetaDescription'];
 		$sContentCanonicalUrl = $aData['contentMetaCanonicalUrl'];
+		$sContentStatus = $aData['contentStatus'];
 		$sContentCreated = strtotime( "Y-m-d H:i:s", time() );
-		$this->oDb->query( "INSERT INTO `entInfoContent`(`contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentCreated`) VALUES (
+		$this->oDb->query( "INSERT INTO `entInfoContent`(`contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentStatus`, `contentCreated`) VALUES (
 			'$sContentTitle',
 			'$sContentText',
 			'$sContentMetaKeywords',
 			'$sContentMetaDescription',
 			'$sContentCanonicalUrl',
+			'$sContentStatus',
 			'$sContentCreated'
 		)" );
 		$this->oDb->execute();
@@ -35,6 +37,7 @@ class clInfoContent {
 		$sContentMetaKeywords = $aData['contentMetaKeywords'];
 		$sContentMetaDescription = $aData['contentMetaDescription'];
 		$sContentCanonicalUrl = $aData['contentMetaCanonicalUrl'];
+		$sContentStatus = $aData['contentStatus'];
 		$sContentUpdated = strtotime( "Y-m-d H:i:s", time() );
 		$this->oDb->query( "UPDATE `entInfoContent` SET 
 			`contentTitle`='$sContentTitle', 
@@ -42,6 +45,7 @@ class clInfoContent {
 			`contentMetaKeywords`='$sContentMetaKeywords',
 			`contentMetaDescription`='$sContentMetaDescription',
 			`contentMetaCanonicalUrl`='$sContentCanonicalUrl',
+			`contentStatus`='$sContentStatus',
 			`contentUpdated`='$sContentUpdated' WHERE `contentId`=$iContentId" );
 		return $this->oDb->execute();
 		// return $this->oDb->lastInsertId();

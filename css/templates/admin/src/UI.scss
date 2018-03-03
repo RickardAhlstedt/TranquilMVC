@@ -71,6 +71,7 @@ form {
 			width: 100%;
 			margin-bottom: 20px;
 		}
+		&#pageSettings,
 		&#pageMeta {
 			@include minScreen( 768px ) {
 				float: right;
@@ -251,6 +252,39 @@ button.raised {
 		&:hover {
 			background-color: $buttonHoverColor;
 		}
+	}
+}
+select {
+	background-color: $buttonBackgroundColor;
+	color: $buttonFontColor;
+	font-weight: 500;
+	transition: all .2s ease-in-out;
+	display: inline-block;
+	height: 36px;
+    padding: 0 26px !important;
+	margin: 6px 0;
+	border: none;
+	border-radius: $buttonBorderRadius;
+	cursor: pointer;
+	touch-action: manipulation;
+	background-image: none;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	user-select: none;
+	letter-spacing: .03em;
+	position: relative;
+	overflow: hidden;
+
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,0.26);
+
+	transition: all .2s ease-in-out;
+
+	&:focus {
+		outline: none;
+		border-color: rgba(0,0,0,0.87);
+		border-width: 2px;
 	}
 }
 

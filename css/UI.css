@@ -48,13 +48,13 @@ form fieldset#pageContent {
   }
 }
 
-form fieldset#pageMeta {
+form fieldset#pageSettings, form fieldset#pageMeta {
   width: 100%;
   margin-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  form fieldset#pageMeta {
+  form fieldset#pageSettings, form fieldset#pageMeta {
     float: right;
     width: 30%;
   }
@@ -221,6 +221,38 @@ button.raised.large {
 
 button.raised.large:hover {
   background-color: #f2f2f2;
+}
+
+select {
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  height: 36px;
+  padding: 0 26px !important;
+  margin: 6px 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  touch-action: manipulation;
+  background-image: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: .03em;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  transition: all .2s ease-in-out;
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.87);
+  border-width: 2px;
 }
 
 /**

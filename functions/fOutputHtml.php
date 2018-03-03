@@ -9,6 +9,10 @@ function createAttributes( $aAttributes = array() ) {
     return $sOutput;
 }
 
+
+/**
+ * Deprecated..
+ */
 function render( $sPath, $aParams = array() ) {
     if( is_array($aParams) && !empty($aParams) ) {
         extract( $aParams );

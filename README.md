@@ -1,3 +1,4 @@
+![Logo for Tranquil](https://github.com/Dronki/TranquilMVC/raw/master/images/views/admin/logo.png)
 # TranquilMVC
 This is a small MVC, written for small sites in mind.
 
@@ -32,6 +33,7 @@ Then from the view-file, we can choose to instantiate the respective model, or n
 What can I say, basic PDO. For an example, take a look at /models/admin/login.php
 
 ## TODO ##
+- Either protect all sensitive folders, or move them into a folder outside of public_html
 - Form-editor.
 - Caching.
 - SASS-compilation.

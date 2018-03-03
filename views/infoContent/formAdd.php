@@ -7,52 +7,6 @@ $oRouter = clRegistry::get( 'clRouter' );
 
 $aErr = array();
 $aData = array();
-$oTemplate->addTop( array(
-	'key' => 'infoContentScript',
-	'content' => '<script src="/js/admin/infoContent.js"></script>'
-) );
-$oTemplate->addBottom( array(
-	'key' => 'CKEditor',
-	'content' => '<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>'
-) );
-$oTemplate->addBottom( array(
-	'key' => 'CKEditorInit',
-	'content' => '
-	<script>
-		CKEDITOR.replace( "contentText" );
-	</script>'
-) );
-
-if( isset($_GET['contentId']) && ctype_digit($_GET['contentId']) ) {
-	$aData = $oRouter->readByViewId($_GET['contentId']);
-	$aData = array_merge( $aData, $oInfoContent->read( $_GET['contentId'] ) );
-	$aData = json_encode($aData);
-
-	// echo '<pre>';
-	// var_dump( $aData );
-	// echo '</pre>';
-
-	$oTemplate->addBottom( array(
-		'key' => 'autoFill',
-		'content' => "
-		<script>
-			var data = $aData;
-			var frm = $('form');
-			$.each(data, function(key, value) {  
-				var ctrl = $('[name='+key+']', frm);  
-				switch(ctrl.prop('type')) { 
-					case 'radio': case 'checkbox':   
-						ctrl.each(function() {
-							if($(this).attr('value') == value) $(this).attr('checked',value);
-						});   
-						break;  
-					default:
-						ctrl.val(value); 
-				}  
-			});  
-		</script>"
-	) );
-}
 
 if( !empty($_POST['frmAddContent']) ) {
 	if( !empty($_GET['contentId']) && ctype_digit($_GET['contentId']) ) {
@@ -82,6 +36,33 @@ if( !empty($_POST['frmAddContent']) ) {
 	}
 }
 
+if( isset($_GET['contentId']) && ctype_digit($_GET['contentId']) ) {
+	$aData = $oRouter->readByViewId($_GET['contentId']);
+	$aData = array_merge( $aData, $oInfoContent->read( $_GET['contentId'] ) );
+	$aData = json_encode($aData);
+
+	$oTemplate->addBottom( array(
+		'key' => 'autoFill',
+		'content' => "
+		<script>
+			var data = $aData;
+			var frm = $('form');
+			$.each(data, function(key, value) {  
+				var ctrl = $('[name='+key+']', frm);  
+				switch(ctrl.prop('type')) { 
+					case 'radio': case 'checkbox':   
+						ctrl.each(function() {
+							if($(this).attr('value') == value) $(this).attr('checked',value);
+						});   
+						break;  
+					default:
+						ctrl.val(value); 
+				}  
+			});  
+		</script>"
+	) );
+}
+
 ?>
 
 <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
@@ -105,6 +86,15 @@ if( !empty($_POST['frmAddContent']) ) {
 		<input type="textarea" rows="4" cols="50" id="contentMetaDescription" name="contentMetaDescription" />
 		<label for="contentMetaCanonicalUrl">Canonical-URL</label>
 		<input type="text" id="contentMetaCanonicalUrl" name="contentMetaCanonicalUrl" />
+	</fieldset>
+	<fieldset id="pageSettings">
+		<legend>Settings</legend>
+		<label for="contentStatus">Status</label>
+		<select name="contentStatus" id="contentStatus" style="width: 100%;">
+			<option value="active">Active</option>
+			<option value="preview">Preview</option>
+			<option value="inactive">Inactive</option>
+		</select>
 	</fieldset>
 	<input type="hidden" name="frmAddContent" value="true" />
 	<button type="submit" class="raised">Save</button>
@@ -130,4 +120,18 @@ $oTemplate->addBottom( array(
 		</script>'
 ) );
 
-?>
+$oTemplate->addTop( array(
+	'key' => 'infoContentScript',
+	'content' => '<script src="/js/admin/infoContent.js"></script>'
+) );
+$oTemplate->addBottom( array(
+	'key' => 'CKEditor',
+	'content' => '<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>'
+) );
+$oTemplate->addBottom( array(
+	'key' => 'CKEditorInit',
+	'content' => '
+	<script>
+		CKEDITOR.replace( "contentText" );
+	</script>'
+) );
