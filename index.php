@@ -8,15 +8,15 @@ ini_set( 'magic_quotes_gpc', 0 );
 ini_set( 'magic_quotes_runtime', 0 );
 ini_set( 'magic_quotes_sybase', 0 );
 
-require_once( 'config/cfBase.php' );
-require_once( 'core/clRouter.php' );
-require_once( 'core/clConfig.php' );
-require_once( 'core/clRegistry.php' );
-require_once( 'core/clView.php' );
-require_once( 'core/clTemplate.php' );
+require_once( 'app/config/cfBase.php' );
+require_once( 'app/core/clRouter.php' );
+require_once( 'app/core/clConfig.php' );
+require_once( 'app/core/clRegistry.php' );
+require_once( 'app/core/clView.php' );
+require_once( 'app/core/clTemplate.php' );
 
-require_once( 'functions/fOutputHtml.php' );
-require_once( 'functions/fDevelopment.php' );
+require_once( 'app/functions/fOutputHtml.php' );
+require_once( 'app/functions/fDevelopment.php' );
 
 ini_set( 'session.gc_maxlifetime', SITE_SESSION_TIMEOUT );
 
