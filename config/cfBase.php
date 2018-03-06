@@ -3,9 +3,9 @@
 define( 'SITE_RELEASE_MODE', false );
 
 define( 'DB_HOST', 'localhost' );
-define( 'DB_USER', 'dronki_usr' );
-define( 'DB_PASS', 'wOehTYsnk4npp0Xe' );
-define( 'DB_NAME', 'dronki_db' );
+define( 'DB_USER', 'root' );
+define( 'DB_PASS', '' );
+define( 'DB_NAME', 'tranquil_db' );
 
 define( 'USER_PASS_SALT', 'tranquil2k18' );
 define( 'USER_TIMEOUT', 3600 );
