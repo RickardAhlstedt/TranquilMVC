@@ -11,22 +11,22 @@ class clConfig {
 	}
 
 	public function readConfig( $sKey ) {
-		$this->oDb->query("SELECT * FROM `entconfig` WHERE `entconfig`.`configkey`='$sKey'");
+		$this->oDb->query("SELECT * FROM `entConfig` WHERE `entConfig`.`configkey`='$sKey'");
 		return $this->oDb->single();
 	}
 
 	public function createConfigLine( $sKey, $mValue ) {
-		$this->oDb->query("INSERT INTO `entconfig` (`configId`, `configKey`, `configValue`) VALUES (NULL, '$sKey', '$mValue')");
+		$this->oDb->query("INSERT INTO `entConfig` (`configId`, `configKey`, `configValue`) VALUES (NULL, '$sKey', '$mValue')");
 		return $this->oDb->execute();
 	}
 
 	public function updateConfigLine( $sKey, $mValue ) {
-		$this->oDb->query("UPDATE `entconfig` SET `configValue` = '$mValue' WHERE `entconfig`.`configKey` = '$sKey'");
+		$this->oDb->query("UPDATE `entConfig` SET `configValue` = '$mValue' WHERE `entConfig`.`configKey` = '$sKey'");
 		return $this->oDb->execute();
 	}
 
 	public function deleteConfigLine( $sKey ) {
-		$this->oDb->query("DELETE FROM `entconfig` WHERE `entconfig`.`configkey`='$sKey'");
+		$this->oDb->query("DELETE FROM `entConfig` WHERE `entConfig`.`configkey`='$sKey'");
 		return $this->oDb->execute();
 	}
 

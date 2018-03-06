@@ -1,5 +1,32 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond $1 !^(images|photos|css|js|robots\.txt)
-RewriteRule ^(.+)$ index.php/$1 [NC,L]
+AddDefaultCharset utf-8
+
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	Options +FollowSymlinks
+	RewriteEngine On
+	RewriteBase /
+
+	##
+	# Rewrite www.example.com -> example.com
+	##
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+	##
+	# Rewrite example.com -> www.example.com
+	##
+	#RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+	#RewriteCond %{HTTP_HOST} !=localhost [NC]
+	#RewriteCond %{HTTP_HOST} !=127.0.0.1
+	#RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+	RewriteCond %{REQUEST_FILENAME} -s [OR]
+	RewriteCond %{REQUEST_FILENAME} -l [OR]
+	RewriteCond %{REQUEST_FILENAME} -d [OR]
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule ^.*$ - [NC,L]
+	RewriteRule ^(.*)$ index.php [NC,L]
+</IfModule>

@@ -19,7 +19,7 @@ if( empty($_SESSION['userId']) ) {
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="//localhost/css/admin.css">
+	<link rel="stylesheet" href="/css/admin.css">
 
 	{top}
 
@@ -27,7 +27,7 @@ if( empty($_SESSION['userId']) ) {
 <body class="">
 	<div id="content-wrapper" class="">
 		<header>
-			<div class="left"><a href="/admin"><img src="//localhost/images/views/admin/logo.png" class="logo"></a></div>
+			<div class="left"><a href="/admin"><img src="/images/views/admin/logo.png" class="logo"></a></div>
 			<div class="middle"></div>
 			<div class="right">
 				<div class="content">
