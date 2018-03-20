@@ -122,7 +122,7 @@ $oTemplate->addBottom( array(
 
 $oTemplate->addTop( array(
 	'key' => 'infoContentScript',
-	'content' => '<script src="/js/admin/infoContent.js"></script>'
+	'content' => '<script src="/js/admin/admin.js"></script>'
 ) );
 $oTemplate->addBottom( array(
 	'key' => 'CKEditor',
@@ -132,6 +132,10 @@ $oTemplate->addBottom( array(
 	'key' => 'CKEditorInit',
 	'content' => '
 	<script>
-		CKEDITOR.replace( "contentText" );
+		CKEDITOR.config.allowedContent=true;
+		CKEDITOR.replace( "contentText", {
+			extraAllowedContent: "*"
+		} );
+
 	</script>'
 ) );

@@ -11,7 +11,9 @@ class clDbPDO {
 	private $aErr = array();
 	
 	private $oConn;
-	private $stmt;
+	public  $stmt;
+
+	public $sHelperQuery = '';
 
 	public function __construct() {
 		$dsn = 'mysql:host=' . $this->aDbParams['host'] .';dbname=' . $this->aDbParams['db'];
@@ -27,8 +29,12 @@ class clDbPDO {
         $this->query( 'SET names utf8' );
 	}
 
+	public function setHelper( $oHelper ) {
+		$this->sHelperQuery = $oHelper->getQuery();
+	}
+
 	public function query($query){
-		$this->stmt = $this->oConn->prepare($query);
+		$this->stmt = $this->oConn->prepare($query . $this->sHelperQuery);
 		// dump( $this->stmt );
 	}
 

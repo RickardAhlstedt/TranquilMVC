@@ -6,7 +6,6 @@ $oTemplate = clRegistry::get( 'clTemplate' );
 
 $oTemplate->setTitle('Admin');
 
-
 ?>
 
 

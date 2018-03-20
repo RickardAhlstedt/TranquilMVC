@@ -1,5 +1,6 @@
 <?php
 
+define( 'SITE_TITLE', 'Tranquil' );
 define( 'SITE_RELEASE_MODE', false );
 
 define( 'DB_HOST', 'localhost' );
@@ -22,3 +23,4 @@ define( 'PATH_LOG', 'logs/' );
 define( 'PATH_UPLOAD_IMAGE', 'images/upload/' );
 
 $GLOBALS['debug'] = true;
+$GLOBALS['enviroment'] = 'development';

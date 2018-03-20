@@ -18,7 +18,7 @@ class login {
 
 	public function login( $sUsername, $sUserpass ) {
 		$sUserpass = $this->saltPassword( $sUsername, $sUserpass );
-		$this->oDb->query("SELECT * FROM `entUsers` WHERE `userName`='$sUsername' AND `userPass`='$sUserpass'");
+		$this->oDb->query("SELECT * FROM `entusers` WHERE `userName`='$sUsername' AND `userPass`='$sUserpass'");
 		$aRow = $this->oDb->single();
 		if( !empty($aRow) ) {
 			// User found
@@ -29,7 +29,7 @@ class login {
 			$iUserId = $aRow['userId'];
 			$oLastLogin = date( "Y-m-d H:i:s", time() );
 
-			$this->oDb->query("UPDATE `entUsers` SET `userLastLogin`='$oLastLogin' WHERE `userId`='$iUserId'");
+			$this->oDb->query("UPDATE `entusers` SET `userLastLogin`='$oLastLogin' WHERE `userId`='$iUserId'");
 			$aResult = $this->oDb->execute();
 			return true;
 		} else {

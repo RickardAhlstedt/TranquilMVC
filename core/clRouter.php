@@ -45,6 +45,12 @@ class clRouter {
 		}
 	}
 
+	public function readAll( $aFields = array() ) {
+		$sFields = implode( " ", $aFields );
+		$this->oDb->query( "SELECT $sFields FROM `entRoutes`" );
+		return $this->oDb->resultset();
+	}
+
 	public function readByViewId( $iViewId ) {
 		$this->oDb->query( "SELECT * FROM `entRoutes` WHERE `routeViewId`=$iViewId" );
 		return $this->oDb->single();
@@ -80,7 +86,7 @@ class clRouter {
 	}
 
 	public function deleteByRouteId( $iRouteId ) {
-		$this->oDb->query( "DELETE FROM `entroutes` WHERE `routeId`=$iViewId" );
+		$this->oDb->query( "DELETE FROM `entroutes` WHERE `routeId`=$iRouteId" );
 		return $this->oDb->execute();
 	}
 

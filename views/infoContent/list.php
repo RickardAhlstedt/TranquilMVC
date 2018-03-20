@@ -9,11 +9,15 @@ $oTemplate = clRegistry::get( 'clTemplate' );
 $oTemplate->setTitle( 'Add content' );
 $oTemplate->addTop( array(
 	'key' => 'infoContentScript',
-	'content' => '<script src="/js/admin/infoContent.js"></script>'
+	'content' => '<script src="/js/admin/admin.js"></script>'
 ) );
 $oInfoContent = new clInfoContent();
 $oTableOutput = new clTableHtml();
 
+require_once( PATH_CORE . 'Helpers/clPagination.php' );
+$oPagination = new clPagination( $oInfoContent->oDb );
+
+$oInfoContent->oDb->setHelper($oPagination);
 $aContent = $oInfoContent->readAll( array('*') );
 
 $oTableOutput->setHeaders( array(
@@ -41,6 +45,7 @@ foreach( $aContent as $aEntry ) {
 	) );
 }
 
+// dump( $oInfoContent->oDb->stmt );
 
 echo '
 <h1>Pages</h1>
@@ -50,4 +55,5 @@ echo '
 </div>
 <div class="panel">
 	' . $oTableOutput->render() . '
+	' . $oPagination->render() . '
 </div>';

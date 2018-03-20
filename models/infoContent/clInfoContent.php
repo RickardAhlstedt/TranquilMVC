@@ -4,7 +4,7 @@ require_once( PATH_CORE . 'clDbPDO.php' );
 
 class clInfoContent {
 
-	private $oDb;
+	public $oDb;
 
 	public function __construct() {
 		$this->oDb = new clDbPDO();
@@ -18,7 +18,7 @@ class clInfoContent {
 		$sContentCanonicalUrl = $aData['contentMetaCanonicalUrl'];
 		$sContentStatus = $aData['contentStatus'];
 		$sContentCreated = strtotime( "Y-m-d H:i:s", time() );
-		$this->oDb->query( "INSERT INTO `entInfoContent`(`contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentStatus`, `contentCreated`) VALUES (
+		$this->oDb->query( "INSERT INTO `entinfocontent`(`contentTitle`, `contentText`, `contentMetaKeywords`, `contentMetaDescription`, `contentMetaCanonicalUrl`, `contentStatus`, `contentCreated`) VALUES (
 			'$sContentTitle',
 			'$sContentText',
 			'$sContentMetaKeywords',
@@ -39,7 +39,7 @@ class clInfoContent {
 		$sContentCanonicalUrl = $aData['contentMetaCanonicalUrl'];
 		$sContentStatus = $aData['contentStatus'];
 		$sContentUpdated = strtotime( "Y-m-d H:i:s", time() );
-		$this->oDb->query( "UPDATE `entInfoContent` SET 
+		$this->oDb->query( "UPDATE `entinfocontent` SET 
 			`contentTitle`='$sContentTitle', 
 			`contentText`='$sContentText',
 			`contentMetaKeywords`='$sContentMetaKeywords',
@@ -52,13 +52,13 @@ class clInfoContent {
 	}
 
 	public function read( $iContentId ) {
-		$this->oDb->query( "SELECT * FROM `entInfoContent` WHERE `contentId`=$iContentId " );
+		$this->oDb->query( "SELECT * FROM `entinfocontent` WHERE `contentId`=$iContentId " );
 		return $this->oDb->single();
 	}
 
 	public function readAll( $aFields = array() ) {
 		$sFields = implode( " ", $aFields );
-		$this->oDb->query( "SELECT $sFields FROM `entInfoContent`" );
+		$this->oDb->query( "SELECT $sFields FROM `entinfocontent`" );
 		return $this->oDb->resultset();
 	}
 

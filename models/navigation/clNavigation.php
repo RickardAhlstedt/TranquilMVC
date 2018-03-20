@@ -10,52 +10,36 @@ class clNavigation {
 		$this->oDb = new clDbPDO();
 	}
 
-	public function readGroup( $sGroup = 'guest' ) {
+	public function buildMenu( $iParentId, $iLevel, $sGroup = 'guest' ) {
 		$this->oDb->query(
 			"SELECT
-				navigationId, navigationParentId, navigationName, navigationHref, navigationBehavior, navigationPrefixContent
+				a.navigationId, a.navigationParentId, a.navigationName, a.navigationHref, a.navigationBehavior, a.navigationPrefixContent, Deriv1.Count
 			FROM
-				`entNavigation`
+				`entnavigation` a
+			LEFT OUTER JOIN (SELECT navigationParentId, COUNT(*) as COUNT FROM 
+				`entnavigation`
+			GROUP BY navigationParentId)
+				Deriv1 ON a.navigationId = Deriv1.navigationParentId
 			WHERE
-				`navigationGroup`='$sGroup'
-			ORDER BY
-				navigationParentId, navigationName
-			"
+				a.navigationParentId=$iParentId
+			AND
+				`navigationGroup`='$sGroup'"
 		);
-		return $this->oDb->resultSet();
-	}
-
-// Array
-// (
-//     [0] => Array
-//         (
-//             [navigationId] => 1
-//             [navigationParentId] => 0
-//             [navigationName] => Home
-//         )
-
-//     [1] => Array
-//         (
-//             [navigationId] => 2
-//             [navigationParentId] => 1
-//             [navigationName] => Sub
-//         )
-
-// )
-
-	public function buildMenu( $iParentId, $aMenuData = array() ) {
-		$sOutput = '<ul class="mainNav">';
-
-		foreach( $aMenuData as $aEntry ) {
-			if( $aEntry['navigationParentId'] == 0 ) {
-				$sOutput .= '<li class="' . $aEntry['navigationName'] . '"><a href="' . $aEntry['navigationHref'] . '" target="' . $aEntry['navigationBehavior'] . '">' . $aEntry['navigationPrefixContent'] . '<span>' . $aEntry['navigationName'] . '</span></a></li>';
-			} elseif( $aEntry['navigationParentId'] == 1 ) {
-				$sOutput .= '<ul class="subList"><li class="' . $aEntry['navigationName'] . '"><a href="' . $aEntry['navigationHref'] . '" target="' . $aEntry['navigationBehavior'] . '">' . $aEntry['navigationPrefixContent'] . '<span>' . $aEntry['navigationName'] . '</span></a></li></ul>';
-			}
+		$aResult = $this->oDb->resultSet();
+		$sClass = '';
+		if( $iLevel <= 1 ) $sClass = 'navMain';
+		elseif( $iLevel >= 2 ) $sClass = 'subMenu';
+		echo '<ul class="' . $sClass . '">';		
+		foreach( $aResult as $aEntry ) {
+			if( $aEntry['Count'] > 0 ) {
+				echo '<li><a href="' . $aEntry['navigationHref'] . '" target="' . $aEntry['navigationBehavior'] . '">' . $aEntry['navigationPrefixContent'] . '<span>' . $aEntry['navigationName'] . '</span></a>';
+					$this->buildMenu( $aEntry['navigationId'], $iLevel + 1 );
+				echo '</li>';
+			} elseif( $aEntry['Count'] == '0' || empty( $aEntry['Count'] ) ) {
+				echo '<li><a href="' . $aEntry['navigationHref'] . '" target="' . $aEntry['navigationBehavior'] . '">' . $aEntry['navigationPrefixContent'] . '<span>' . $aEntry['navigationName'] . '</span></a><li>';
+			} else;
 		}
-
-		$sOutput .= '</ul>';
-		return $sOutput;
+		echo '</ul>';
 	}
 
 }

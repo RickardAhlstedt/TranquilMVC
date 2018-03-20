@@ -20,6 +20,7 @@ if( empty($_SESSION['userId']) ) {
 		crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="/css/admin.css">
+	<link rel="stylesheet" href="/css/UI.css">
 
 	{top}
 
@@ -38,14 +39,8 @@ if( empty($_SESSION['userId']) ) {
 		</header>
 		<aside>
 		<?php
-			echo $oNavigation->buildMenu(0, $oNavigation->readGroup('admin') );
+			echo $oNavigation->buildMenu(0, 1, 'admin' );
 		?>
-			<!-- <ul class="mainNav">
-				<li><a href="/admin"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-				<li><a href="/admin/infoContent"><i class="far fa-file-alt"></i><span>Pages</span></a></li>
-				<li><a href="/admin/modules/listModules"><i class="fas fa-archive"></i><span>Modules</span></a></li>
-				<li><a href="/admin/settings"><i class="fas fa-cogs"></i><span>Settings</span></a></li>
-			</ul> -->
 		</aside>
 		<div id="content">
 			{content}

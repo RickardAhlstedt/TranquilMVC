@@ -297,7 +297,14 @@ select {
     border-radius: 0;
     background-color: #FFF;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
+	
+	.title {
+		// font-size: 2em;
+		border-bottom: 1px solid rgba(0,0,0,0.16);
+		width: 100%;
+	}
+
 }
 
 table {
@@ -333,6 +340,84 @@ table {
 					font-weight: 500;
 					text-decoration: none;
 				}
+			}
+		}
+	}
+}
+
+.columns {
+	&.group {
+		clear: both;
+		padding: 0px;
+		margin: 0px;
+
+		zoom: 1;
+
+		&:before,
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+
+		.col {
+			display: block;
+			float: left;
+			margin: 1% 0 1% 1.6%;
+			&:first-child {
+				margin-left: 0;
+			}
+			&.span_4_of_4 {
+				width: 100%;
+			}
+			&.span_3_of_4 {
+				width: 74.6%;
+			}
+			&.span_2_of_4 {
+				width: 49.2%;
+			}
+			&.span_1_of_4 {
+				width: 23.8%;
+			}
+			@include maxScreen( 768px ) {
+				margin: 1% 0 1% 0; 
+				&.span_1_of_4,
+				&.span_2_of_4,
+				&.span_3_of_4,
+				&.span_4_of_4 {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+ul.pagination {
+	display: inline-flex;
+	li {
+		a {
+			font-size: 1em;
+			background-color: $buttonBackgroundColor;
+			color: $buttonFontColor;
+			font-weight: 500;
+			cursor: pointer;
+			font-family: 'Lato', sans-serif;
+			padding: 8px 8px;
+			display: block;
+		}
+		&.disabled {
+			display: none;
+			a,
+			a:hover {
+				cursor: no-drop;
+			}
+			
+		}
+		&.active {
+			a,
+			a:hover {
+				cursor: pointer;
 			}
 		}
 	}

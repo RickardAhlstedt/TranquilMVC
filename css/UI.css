@@ -267,6 +267,11 @@ select:focus {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
+.panel .title {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+  width: 100%;
+}
+
 table {
   width: 100%;
   max-width: 100%;
@@ -302,4 +307,81 @@ table tbody tr td a {
   color: #000;
   font-weight: 500;
   text-decoration: none;
+}
+
+.columns.group {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+  zoom: 1;
+}
+
+.columns.group:before, .columns.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.columns.group .col {
+  display: block;
+  float: left;
+  margin: 1% 0 1% 1.6%;
+}
+
+.columns.group .col:first-child {
+  margin-left: 0;
+}
+
+.columns.group .col.span_4_of_4 {
+  width: 100%;
+}
+
+.columns.group .col.span_3_of_4 {
+  width: 74.6%;
+}
+
+.columns.group .col.span_2_of_4 {
+  width: 49.2%;
+}
+
+.columns.group .col.span_1_of_4 {
+  width: 23.8%;
+}
+
+@media screen and (max-width: 768px) {
+  .columns.group .col {
+    margin: 1% 0 1% 0;
+  }
+  .columns.group .col.span_1_of_4, .columns.group .col.span_2_of_4, .columns.group .col.span_3_of_4, .columns.group .col.span_4_of_4 {
+    width: 100%;
+  }
+}
+
+ul.pagination {
+  display: inline-flex;
+}
+
+ul.pagination li a {
+  font-size: 1em;
+  background-color: transparent;
+  color: #000;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  padding: 8px 8px;
+  display: block;
+}
+
+ul.pagination li.disabled {
+  display: none;
+}
+
+ul.pagination li.disabled a,
+ul.pagination li.disabled a:hover {
+  cursor: no-drop;
+}
+
+ul.pagination li.active a,
+ul.pagination li.active a:hover {
+  cursor: pointer;
 }

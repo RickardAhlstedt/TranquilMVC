@@ -1,0 +1,1 @@
+CREATE TABLE `tranquil_db`.`entTest` ( `testcolumn1` INT NOT NULL , `testcolumn2` INT NOT NULL , `testcolumn3` INT NOT NULL , `testcolumn4` INT NOT NULL ) ENGINE = InnoDB;
