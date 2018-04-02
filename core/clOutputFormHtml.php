@@ -10,6 +10,7 @@ class clOutputFormHtml {
 	public function __construct( $aParams = array() ) {
 		$aParams += array(
 			'method' => 'post',
+			'enctype' => '',
 			'action' => $_SERVER['PHP_SELF'],
 			'autocomplete' => 'on',
 			'class' => 'form',
@@ -47,6 +48,9 @@ class clOutputFormHtml {
 				case 'select':
 					$sInput = $this->generateSelect( $aEntry );
 					break;
+				case 'file':
+					$sInput = $this->generateFileUpload( $aEntry );
+					break;
 				case 'hidden':
 					$sLabel = '';
 					$sInput = '<input type="hidden" name="' . $aEntry['title'] . '" value="' . $aEntry['value'] . '" />';
@@ -57,14 +61,31 @@ class clOutputFormHtml {
 			}
 			$sElements .= $sLabel . '<p>' . $sInput . '</p>';
 		}
+		$sEnctype = !empty( $aParams['enctype'] ) ? 'enctype="' . $aParams['enctype'] .'"' : '';
 		$sOutput = '
-			<form action="' . $this->aParams['action'] . '" method="' . $this->aParams['method'] . '" class="' . $this->aParams['class'] . '">
+			<form action="' . $this->aParams['action'] . '" method="' . $this->aParams['method'] . '" class="' . $this->aParams['class'] . '" ' . $sEnctype .'>
 				<input type="hidden" name="action" value="submit_' . $this->iFormId . '" />
 				' . $sElements . '
 			</form>';
 		return $sOutput;
 	}
 
+	private function generateFileUpload( $aParams = array() ) {
+		$sName = $aParams['title'];
+		
+		$bMultiple = false;
+
+		$sAttributes = '';
+		if( !empty($aParams['attributes']) ) {
+			foreach( $aParams['attributes'] as $sKey => $sValue ) {
+				$sAttributes .= $sKey . '="' . $sValue . '"';
+				if( $sKey == 'multiple' ) $bMultiple = true;
+				$sName .= '[]';
+			}
+		}
+		return '<input type="file" name="' . $sName . '" ' . $sAttributes . '>';
+	}
+	
 	private function generateSelect( $aParams = array() ) {
 		$sClass = '';
 		if( !empty($aParams['attributes']) ) {

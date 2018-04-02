@@ -17,6 +17,7 @@ require_once( 'core/clTemplate.php' );
 
 require_once( 'functions/fOutputHtml.php' );
 require_once( 'functions/fDevelopment.php' );
+require_once( 'functions/fFileSystem.php' );
 
 ini_set( 'session.gc_maxlifetime', SITE_SESSION_TIMEOUT );
 

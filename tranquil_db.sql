@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2018 at 10:12 PM
+-- Generation Time: Apr 02, 2018 at 09:32 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -37,7 +37,25 @@ CREATE TABLE `entconfig` (
 --
 
 INSERT INTO `entconfig` (`configId`, `configKey`, `configValue`) VALUES
-(1, 'SITE_TITLE', 'Tranquil');
+(1, 'SITE_TITLE', 'tranquil'),
+(8, 'test', 'value222');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entfiles`
+--
+
+CREATE TABLE `entfiles` (
+  `fileId` int(11) NOT NULL,
+  `fileName` varchar(255) NOT NULL,
+  `fileExtension` varchar(255) NOT NULL,
+  `fileType` varchar(255) NOT NULL,
+  `fileParentModel` varchar(255) NOT NULL,
+  `fileParentId` int(11) NOT NULL,
+  `fileTitle` varchar(255) NOT NULL,
+  `fileCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -164,6 +182,12 @@ ALTER TABLE `entconfig`
   ADD UNIQUE KEY `configKey` (`configKey`);
 
 --
+-- Indexes for table `entfiles`
+--
+ALTER TABLE `entfiles`
+  ADD PRIMARY KEY (`fileId`);
+
+--
 -- Indexes for table `entinfocontent`
 --
 ALTER TABLE `entinfocontent`
@@ -201,7 +225,12 @@ ALTER TABLE `entusers`
 -- AUTO_INCREMENT for table `entconfig`
 --
 ALTER TABLE `entconfig`
-  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `configId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `entfiles`
+--
+ALTER TABLE `entfiles`
+  MODIFY `fileId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `entinfocontent`
 --

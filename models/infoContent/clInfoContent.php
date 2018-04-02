@@ -10,46 +10,53 @@ class clInfoContent {
 		$this->oDb = new clDbPDO();
 	}
 
-	// public $aFormDataDict = array(
-	// 	'name' => array(
-	// 		'title' => 'Name',
-	// 		'attributes' => array(
-	// 			'class' => 'nameField',
-	// 			'placeholder' => 'nameplaceholder'
-	// 		),
-	// 		'value' => 'name',
-	// 		'type' => 'text',
-	// 		'validations' => array('not_empty'),
-	// 	),
-	// 	'email' => array(
-	// 		'title' => 'Email',
-	// 		'type' => 'email',
-	// 		'validations' => array('not_empty', 'is_valid_email'),
-	// 	),
-	// 	'select' => array(
-	// 		'title' => 'selectSomething',
-	// 		'type' => 'array',
-	// 		'values' => array(
-	// 			'key1' => 'value1',
-	// 			'key2' => 'value2'
-	// 		)
-	// 	),
-	// 	'comment' => array(
-	// 		'title' => 'Comments',
-	// 		'attributes' => array(
-	// 			'class' => 'comment',
-	// 		),
-	// 		'type' => 'textarea',
-	// 		'validations' => array('not_empty'),
-	// 	),
-	// 	'frmSubmit' => array(
-	// 		'title' => 'Submit me!',
-	// 		'type' => 'button',
-	// 		'attributes' => array(
-	// 			'class' => 'raised'
-	// 		)
-	// 	),
-	// );
+	public $aFormDataDict = array(
+		'name' => array(
+			'title' => 'Name',
+			'attributes' => array(
+				'class' => 'nameField',
+				'placeholder' => 'nameplaceholder'
+			),
+			'value' => 'name',
+			'type' => 'text',
+			'validations' => array('not_empty'),
+		),
+		'email' => array(
+			'title' => 'Email',
+			'type' => 'email',
+			'validations' => array('not_empty', 'is_valid_email'),
+		),
+		'select' => array(
+			'title' => 'selectSomething',
+			'type' => 'array',
+			'values' => array(
+				'key1' => 'value1',
+				'key2' => 'value2'
+			)
+		),
+		'contentText' => array(
+			'title' => 'contentText',
+			'attributes' => array(
+				'class' => 'comment',
+			),
+			'type' => 'textarea',
+			'validations' => array('not_empty'),
+		),
+		'fileUpload' => array(
+			'title' => 'file',
+			'attributes' => array(
+				'multiple' => 'multiple'
+			),
+			'type' => 'file'
+		),
+		'frmSubmit' => array(
+			'title' => 'Submit me!',
+			'type' => 'button',
+			'attributes' => array(
+				'class' => 'raised'
+			)
+		),
+	);
 
 	public function create( $aData = array() ) {
 		$sContentTitle = $aData['contentTitle'];
