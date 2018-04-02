@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/main.min.css">
+	<link rel="stylesheet" href="/css/UI.css">
+
+    
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+	<script src="/js/templates/default/default.js"></script>
+
+	<title>Tranquil</title>
+<meta name="keywords" content="meta, key, words">
+<meta name="description" content="metadescription">
+<link rel="canonical" href="" />
+
+</head>
+<body>
+<main class="wrapper">
+	<header class="fixed">
+		<div id="content">
+			<a href="/" class="logo" ><img src="/images/logo.png" /></a>
+			<div class="right">
+				<a href="/" class="expandMenu"><i class="fas fa-bars"></i></a>
+				<ul class="navMain"><li><a href="/" target="_self"><span>Home</span></a><ul class="subMenu"><li><a href="/test-page" target="_self"><span>Sub</span></a><li></ul></li></ul>			</div>
+		</div>
+	</header>
+	<main id="content">
+		<h1>Tranquil</h1>
+
+<h2>What is tranquil?</h2>
+
+<p>Tranquil is a light CMS and MVC-based PHP-framework, written from ground-up using secure technologies and open-source solutions.</p>
+
+<p>Tranquil utilizes the tranquil-css-framework, which is freely available on its <a href="http://cdn.dronki.tech/tranquil/css/" target="_blank">CDN-page</a>.</p>
+
+<p>The administration uses <a href="https://ckeditor.com/" target="_blank">CKEditor</a>, and due to this framework being open-source and easy to modify, it&#39;s quite easy to replace CKEditor to <a href="https://www.tinymce.com/download/" target="_blank">TinyMCE</a>.</p>
+
+<p>Pages such as this, can be created using the administration, and all pages supports meta-tags, meta-description, and canonical-URL. Pages can also be set as active (available for all), preview (only available for admins to preview), and inactive (not available to anyone).</p>
+
+<p>This framework also utilizes a template-engine that is written from scratch, so each view can add scripts, stylesheets, and meta-tags on the fly when generating the page.</p>
+
+<h2>Core-functions:</h2>
+
+<ul>
+	<li>clConfig.php - for reading and storing variables in the database.</li>
+	<li>clDbPDO.php - for communicating with the database.</li>
+	<li>clLogger.php - Log important messages from modules to a file.</li>
+	<li>clRegistry.php - Instantiate and control instantiated objects from one file.</li>
+	<li>clRouter.php - Takes care of all the routing performed in the framework.</li>
+	<li>clTableHtml.php - Create tables on the fly.</li>
+	<li>clTemplate.php - The template-engine.</li>
+	<li>clView.php - View-rendering and scripting-engine.</li>
+</ul>
+
+<h2>Models:</h2>
+
+<ul>
+	<li>admin - The model responsible for the administration.</li>
+	<li>infoContent - The model for inserting and managing the pages that can be displayed.</li>
+	<li>moduleInstaller - Not quite done yet.</li>
+	<li>navigation - Generates the navigation based on parents, groups, classes, behavior, and prefix-content (such as <a href="https://fontawesome.com/icons?d=gallery" target="_blank">fontawesome</a>)</li>
+</ul>
+
+<h2>TODO:</h2>
+
+<ul>
+	<li>Finish the moduleInstaller.</li>
+	<li>Finish the settings-model and views.</li>
+	<li>Finish the router-views.</li>
+	<li><s>Create clPagination.</s>&nbsp;- <strong>Fixed 2018-03-19</strong></li>
+	<li>Add more capabilities to the infoContent-editor.</li>
+	<li>Expand the scripting-engine in the clView.php.</li>
+	<li>Rewrite administration-CSS.</li>
+	<li><s>Fix the depth-bug in the navigation.&nbsp;</s>&nbsp;- <strong>Fixed 2018-03-19</strong></li>
+</ul>
+
+<ul>
+</ul>
+	</div>
+</main>
+</body>
+</html>

@@ -110,9 +110,7 @@ class clTemplate {
 		ob_start();
 		require PATH_TEMPLATE . $this->sTemplate;
 		$sTemplate = ob_get_clean();
-		$sTemplate = str_replace( '{top}', $sTop, $sTemplate );
-		$sTemplate = str_replace( '{bottom}', $sBottom, $sTemplate );
-		return str_replace( '{content}', $sContent, $sTemplate );
+		return $sTemplate;
 	}
 
 	public function setContent( $sContent ) {

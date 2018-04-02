@@ -8,14 +8,16 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="/css/admin.css">
+	<link rel="stylesheet" href="/css/UI.css">
 
-	{top}
+	<?php echo $sTop; ?>
+
 
 </head>
 <body class="">
 	<div id="content-wrapper" class="">
-		{content}
+	<?php echo $sContent; ?>
 	</div>
-	{bottom}
+	<?php echo $sBottom; ?>
 </body>
 </html>

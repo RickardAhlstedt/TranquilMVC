@@ -15,6 +15,12 @@ class clDbPDO {
 
 	public $sHelperQuery = '';
 
+	public $sPrimaryEntity = '';
+	public $sCriterias = '';
+	public $aFieldsDefault = '*';
+
+	public $aFields = array();
+
 	public function __construct() {
 		$dsn = 'mysql:host=' . $this->aDbParams['host'] .';dbname=' . $this->aDbParams['db'];
         $aOptions = array(
@@ -55,6 +61,82 @@ class clDbPDO {
 			}
 		}
 		$this->stmt->bindValue($param, $value, $type);
+	}
+
+	public function setEntity( $sPrimaryEntity ) {
+		$this->sPrimaryEntity = $sPrimaryEntity;
+	}
+
+	public function setCriterias( $sCriterias ) {
+		$this->sCriterias = $sCriterias;
+	}
+
+	public function setFields( $aFields ) {
+		$this->aFields = $aFields;
+	}
+
+	public function createData( $aData, $aParams = array() ) {
+		if( empty($aData) ) return;
+
+		$aParams += array(
+			'entities' => $this->sPrimaryEntity
+		);
+		$this->setEntity( $aParams['entities'] );
+
+		$this->query( 'INSERT INTO ' . $this->sPrimaryEntity . ' SET ' . $this->formatData( $aData ) );
+		return $this->execute();
+	}
+
+	public function updateData( $aData, $aParams = array() ) {
+		if( empty($aData) ) return;
+
+		$aParams += array(
+			'entities' => $this->sPrimaryEntity,
+			'criterias' => null
+		);
+		$this->setEntity( $aParams['entities'] );
+		$this->setCriterias( $aParams['criterias'] );
+
+		$this->query( 'UPDATE ' . $this->sPrimaryEntity . ' SET ' . $this->formatData( $aData ) . $this->formatCriteras( $aParams['criterias']));
+		// dump( $this->stmt );
+		return $this->execute();
+	}
+
+	public function readData( $aParams = array() ) {
+		$aParams += array(
+			'entities' => $this->sPrimaryEntity,
+			'criterias' => null,
+			'fields' => $this->aFieldsDefault
+		);
+		$this->setEntity( $aParams['entities'] );
+		$this->setCriterias( $aParams['criterias'] );
+		$this->setFields( $aParams['fields'] );
+
+		$this->query( 'SELECT ' . $this->formatFields($aParams['fields']) . ' FROM ' . $this->sPrimaryEntity . $this->formatCriteras($aParams['criterias']) );
+		return $this->single();
+	}
+
+	public function formatFields( $aFields ) {
+		$aFieldsTmp = array();
+
+		foreach( $aFields as $sField ) {
+			$aFieldsTmp[] = $sField;
+		}
+		return implode( ', ', $aFieldsTmp );
+	}
+
+	public function formatData( $aData, $bEscape = true) {
+		$aDataTmp = array();
+
+		foreach( $aData as $sKey => $sValue ) {
+			$aDataTmp[$sKey] = $sKey . ' = ' . ( $bEscape ? $this->escapeStr($sValue) : $sValue );
+		}
+		return implode( ', ', $aDataTmp );
+	}
+
+	public function formatCriteras( $sCriterias = '' ) {
+		if( empty($sCriterias) && empty($this->sCriterias) ) return;
+		return ' WHERE ' . $sCriterias . ( (!empty($sCriterias) && !empty($this->sCriterias)) ? ' AND ' . $this->sCriterias : $this->sCriterias );
 	}
 
 	public function execute(){

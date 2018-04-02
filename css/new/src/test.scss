@@ -1,0 +1,262 @@
+/*
+Variables
+*/
+$staticBlockColor: rgb( 255, 255, 255 );
+$fontColor: rgba(0, 0, 0, 0.85);
+
+/*
+Mixins
+*/
+
+@mixin maxScreen($res)
+{
+	@media screen and (max-width: $res)
+	{
+		@content;
+	}
+}
+
+@mixin minScreen($res)
+{
+	@media screen and (min-width: $res)
+	{
+		@content;
+	}
+}
+
+@mixin clearfix() {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Lato', sans-serif;
+	text-decoration: none;
+	color: inherit;
+	-webkit-font-smoothing: antialiased;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	background-color: #f2f2f2;
+	font-family: inherit;
+	color: rgba(0, 0, 0, 0.85);
+	min-width: 100%;
+	z-index: 999;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+#wrapper {
+	overflow-x: hidden;
+	overflow-y: auto;
+	perspective: 3px;
+
+	header {
+		background-color: #5C636E;
+		color: rgba(255, 255, 255, 0.85);
+
+		.top-promotion {
+			position: relative;
+			width: 100%;
+			img {
+				box-sizing: border-box;
+				vertical-align: middle;
+				height: 116px;
+			}
+			.close-btn {
+				position: absolute;
+				top: 0.5em;
+				right: 0.5em;
+				color: rgba(0, 0, 0, 0.85);
+			}
+		}
+		.pre-header {
+			background-color: #f2f2f2;
+			.content {
+				padding: 1em 0;
+				max-width: 1600px;
+				margin: 0 auto;
+				color: rgba(0, 0, 0, 0.85);
+				.left {
+					float: left;
+					width: 50%;
+					padding: 0;
+					position: relative;
+				}
+				.right {
+					float: right;
+					text-align: right;
+					width: 50%;
+					padding: 0;
+					position: relative;
+					@include clearfix();
+				}
+				@include clearfix();
+			}
+		}
+		
+		.container {
+			max-width: 1600px;
+			margin: 0 auto;
+			padding: 1em 0;
+			.left {
+				float: left;
+				width: 50%;
+				padding: 0;
+				position: relative;
+				.logo {
+					img {
+						
+					}
+				}
+			}
+			.right {
+				float: right;
+				text-align: right;
+				width: 50%;
+				padding: 0;
+				position: relative;
+				@include clearfix();
+			}
+			@include clearfix();
+		}
+		hr {
+			border: 1px solid rgba(242, 242, 242, 0.185);
+			-webkit-margin-before: 0em;
+			-webkit-margin-after: 0em;
+		}
+		#mainNav {
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 0.5em 0;
+			ul.navMain {
+				display: inline-flex;
+				position: relative;
+				@include maxScreen( 768px ) {
+					display: none;
+				}
+				li {
+					margin: 0 0.5em;
+					display: block;
+					a {
+						display: inline-block;
+					}
+					ul {
+						display: none;
+						position: relative;
+						&.subMenu {
+							position: absolute;
+							background-color: #5C636E;
+							padding: 1em;
+							left: 0;
+						}
+					}
+				}
+				> ul > li {
+					float: none;
+				}
+			}
+			.expand { 
+				display: inline-block;
+				width: 40px;
+				height: 32px; 
+				position: relative; 
+				background: transparent; 
+				padding-left: 10px;
+				cursor: pointer;
+			}
+		}
+	}
+
+}
+
+.section {
+	position: relative;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white !important;
+	// text-shadow: 0 0 5px #000;
+
+	&.parallax {
+		&::after {
+			content: " ";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+
+			transform: translateZ(-1px) scale(1.5);
+			background-size: 100%;
+			z-index: -1;
+		}
+		&.bg1 {
+			&::after {
+				background: url( '/images/views/background1.jpg' );
+			}
+		}
+		&.bg2 {
+			&::after {
+				background: url( '/images/views/Controller.jpg' );
+			}
+		}
+	}
+
+	&.static {
+		background: $staticBlockColor;
+		color: $fontColor !important;
+		height: auto !important;
+		min-height: 40vh;
+		padding: 2em 2em;
+		display: block;
+		h1 {
+			text-align: center;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 <?php
 
+include_once( PATH_MODELS . 'moduleInstaller/cfModuleInstaller.php' );
 require_once( PATH_CORE . 'clDbPDO.php' );
 
 class clModuleInstaller {

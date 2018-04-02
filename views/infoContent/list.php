@@ -7,10 +7,6 @@ $oRouter = clRegistry::get( 'clRouter' );
 
 $oTemplate = clRegistry::get( 'clTemplate' );
 $oTemplate->setTitle( 'Add content' );
-$oTemplate->addTop( array(
-	'key' => 'infoContentScript',
-	'content' => '<script src="/js/admin/admin.js"></script>'
-) );
 $oInfoContent = new clInfoContent();
 $oTableOutput = new clTableHtml();
 

@@ -8,7 +8,7 @@ $sUAcode = (($aData = $oConfig->readConfig('googleAnalyticsCode')) ? current(cur
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="/css/main.min.css">
@@ -30,10 +30,13 @@ $sUAcode = (($aData = $oConfig->readConfig('googleAnalyticsCode')) ? current(cur
 		src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
 	<link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
 	<script src="/js/templates/default/default.js"></script>
-    {top}
+
+	<?php echo $sTop; ?>
 
 
 </head>
@@ -49,9 +52,9 @@ $sUAcode = (($aData = $oConfig->readConfig('googleAnalyticsCode')) ? current(cur
 		</div>
 	</header>
 	<main id="content">
-		{content}
+		<?php echo $sContent; ?>
 	</div>
 </main>
-{bottom}
+<?php echo $sBottom; ?>
 </body>
 </html>

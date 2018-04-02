@@ -120,10 +120,6 @@ $oTemplate->addBottom( array(
 		</script>'
 ) );
 
-$oTemplate->addTop( array(
-	'key' => 'infoContentScript',
-	'content' => '<script src="/js/admin/admin.js"></script>'
-) );
 $oTemplate->addBottom( array(
 	'key' => 'CKEditor',
 	'content' => '<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>'

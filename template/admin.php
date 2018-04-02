@@ -22,14 +22,28 @@ if( empty($_SESSION['userId']) ) {
 	<link rel="stylesheet" href="/css/admin.css">
 	<link rel="stylesheet" href="/css/UI.css">
 
-	{top}
+	<script src="/js/admin/admin.js"></script>
+
+	<?php echo $sTop; ?>
 
 </head>
 <body class="">
-	<div id="content-wrapper" class="">
+	<div id="sideDrawer" class="sidebar left">
+		<div id="sideDrawer-brand" class="brand">
+			<span class="text-title">Tranquil</span>
+		</div>
+		<nav data-title="Meny">
+			<?php
+				echo $oNavigation->buildMenu(0, 1, 'admin' );
+			?>
+		</nav>
+	</div>
+	<div id="wrapper" class="">
 		<header>
-			<div class="left"><a href="/admin"><img src="/images/views/admin/logo.png" class="logo"></a></div>
-			<div class="middle"></div>
+			<div id="menuBtn">☰</div>
+			<!-- <div id="logo">
+				<a href="/admin"><img src="/images/views/admin/logo.png" class="logo"></a>
+			</div> -->
 			<div class="right">
 				<div class="content">
 					<a href="/" target="_blank"><i class="fas fa-home"></i>Front-page</a>
@@ -37,15 +51,13 @@ if( empty($_SESSION['userId']) ) {
 				</div>
 			</div>
 		</header>
-		<aside>
-		<?php
-			echo $oNavigation->buildMenu(0, 1, 'admin' );
-		?>
-		</aside>
 		<div id="content">
-			{content}
+		<?php echo $sContent; ?>
 		</div>
+		<footer>
+			content fitta
+		</footer>
 	</div>
-	{bottom}
+	<?php echo $sBottom; ?>
 </body>
 </html>

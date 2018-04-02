@@ -16,10 +16,29 @@ if( !empty($aData) ) {
 			$oRouter->redirect( '/' );
 		}
 	}
-	$oTemplate->setTitle( $aContentData['contentTitle'] );
-	$oTemplate->setKeywords( $aContentData['contentMetaKeywords'] );
-	$oTemplate->setDescription( $aContentData['contentMetaDescription'] );
-	$oTemplate->setCanonicalUrl( $aContentData['contentMetaCanonicalUrl'] );
-	
-	echo $aContentData['contentText'];
+	if( $GLOBALS['enviroment'] == 'production' && ($_SESSION['userStatus'] != 'admin') ) {
+		//read cache before rendering a live-view
+		if( file_exists(PATH_CACHE . 'infoContent/' . $aData['routeViewId'] . '.cache') ) {
+			$fh = fopen( PATH_CACHE . 'infoContent/' . $aData['routeViewId'] . '.cache', 'r' );
+			$sCacheContent = fread( $fh, filesize( PATH_CACHE . 'infoContent/' . $aData['routeViewId'] . '.cache' ) );
+			$sCacheDecode = gzdecode( $sCacheContent );
+			echo $sCacheDecode;
+			exit;
+		} else {
+			$oTemplate->setTitle( $aContentData['contentTitle'] );
+			$oTemplate->setKeywords( $aContentData['contentMetaKeywords'] );
+			$oTemplate->setDescription( $aContentData['contentMetaDescription'] );
+			$oTemplate->setCanonicalUrl( $aContentData['contentMetaCanonicalUrl'] );
+			
+			echo $aContentData['contentText'];
+		}	
+	} else {
+		// Always render a live-view
+		$oTemplate->setTitle( $aContentData['contentTitle'] );
+		$oTemplate->setKeywords( $aContentData['contentMetaKeywords'] );
+		$oTemplate->setDescription( $aContentData['contentMetaDescription'] );
+		$oTemplate->setCanonicalUrl( $aContentData['contentMetaCanonicalUrl'] );
+		
+		echo $aContentData['contentText'];
+	}
 }

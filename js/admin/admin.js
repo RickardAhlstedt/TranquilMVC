@@ -3,8 +3,23 @@ $(document).ready( function() {
 		if ( confirm(this.title) == false) return false;
 		return true;
 	} );
-
+	$("#menuBtn").click(function() {
+		$("#sideDrawer").toggleClass("show");
+		$("#wrapper").toggleClass("drawerOut leftDrawer");
+	});
 } );
+
+$(window).bind('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+        switch (String.fromCharCode(event.which).toLowerCase()) {
+		case 'e':
+			event.preventDefault();
+			$(".sidebar.left").toggleClass("show");
+			$("#wrapper").toggleClass("drawerOut leftDrawer");
+			break;
+        }
+    }
+});
 
 function strToUrl( str ) {
 	str = str.toLowerCase();

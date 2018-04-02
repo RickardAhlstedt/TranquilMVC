@@ -35,8 +35,8 @@ class clRouter {
 	}
 	
 	public function read( $sRoute ) {
-		// SELECT * FROM `entRoutes` WHERE `routePath` LIKE '%/%'
-		$this->oDb->query( "SELECT * FROM `entRoutes` WHERE `routePath` LIKE '%$sRoute%'" );
+		// SELECT * FROM `entroutes` WHERE `routePath` LIKE '%/%'
+		$this->oDb->query( "SELECT * FROM `entroutes` WHERE `routePath` LIKE '%$sRoute%'" );
 		$aData = $this->oDb->single();
 		if( !empty( $aData ) ) {
 			return $aData;
@@ -47,17 +47,22 @@ class clRouter {
 
 	public function readAll( $aFields = array() ) {
 		$sFields = implode( " ", $aFields );
-		$this->oDb->query( "SELECT $sFields FROM `entRoutes`" );
+		$this->oDb->query( "SELECT $sFields FROM `entroutes`" );
 		return $this->oDb->resultset();
 	}
 
+	public function readByRouteId( $iRouteId ) {
+		$this->oDb->query( "SELECT * FROM `entroutes` WHERE `routeId`=$iRouteId" );
+		return $this->oDb->single();
+	}
+
 	public function readByViewId( $iViewId ) {
-		$this->oDb->query( "SELECT * FROM `entRoutes` WHERE `routeViewId`=$iViewId" );
+		$this->oDb->query( "SELECT * FROM `entroutes` WHERE `routeViewId`=$iViewId" );
 		return $this->oDb->single();
 	}
 
 	public function getIdByRoute( $sRoute ) {
-		$this->oDb->query( "SELECT `routeViewId` FROM `entRoutes` WHERE `routePath` LIKE '%$sRoute%'" );
+		$this->oDb->query( "SELECT `routeViewId` FROM `entroutes` WHERE `routePath` LIKE '%$sRoute%'" );
 		return $this->oDb->single();
 	}
 
