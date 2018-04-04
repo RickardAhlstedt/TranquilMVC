@@ -53,7 +53,7 @@ class clInfoContent {
 			'title' => 'Submit me!',
 			'type' => 'button',
 			'attributes' => array(
-				'class' => 'raised'
+				'class' => 'raised ripple'
 			)
 		),
 	);
